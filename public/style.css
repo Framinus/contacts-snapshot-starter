@@ -98,3 +98,7 @@ nav .search-form input {
   color: red;
   font-weight: bold;
 }
+
+.signup-container {
+  border: 1px solid grey;
+}
