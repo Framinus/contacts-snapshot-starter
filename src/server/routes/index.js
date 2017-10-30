@@ -9,8 +9,11 @@ router.get('/', (request, response, next) => {
     .catch(error => next(error));
 });
 
-router.use('/contacts', contactsRoutes);
+router.post('/', (request, response, next) => {
+  const { username, password, role } = request.body;
+});
 
+router.use('/contacts', contactsRoutes);
 router.use(middlewares.logErrors);
 router.use(middlewares.errorHandler);
 router.use(middlewares.notFoundHandler);
