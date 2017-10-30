@@ -1,6 +1,5 @@
 const db = require('./db/contacts');
 
-
 // additional functions which operate on `contacts` data will go here
 
 module.exports = {
@@ -8,5 +7,5 @@ module.exports = {
   findAll: db.findAll,
   findById: db.findById,
   destroy: db.destroy,
-  search: db.search
-}
+  search: db.search,
+};

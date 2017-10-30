@@ -1,6 +1,6 @@
 const db = require('./db')
 
-const create = function(contact){
+const create = function (contact) {
   return db.query(`
     INSERT INTO
       contacts (first_name, last_name)
@@ -14,9 +14,9 @@ const create = function(contact){
       contact.last_name,
     ])
     .catch(error => {
-      console.error({message: 'Error occurred while executing contacts.create',
-                     arguments: arguments});
-      throw error
+      console.error({ message: 'Error occurred while executing contacts.create',
+                     arguments: arguments });
+      throw error;
     });
 }
 
@@ -28,9 +28,9 @@ const findAll = function(){
       contacts
     `, [])
     .catch(error => {
-      console.error({message: 'Error occurred while executing contacts.findAll',
-                     arguments: arguments});
-      throw error});
+      console.error({ message: 'Error occurred while executing contacts.findAll',
+                     arguments: arguments });
+      throw error });
 }
 
 const findById = function(contactId){
@@ -40,8 +40,8 @@ const findById = function(contactId){
     [contactId])
     .then( contacts => contacts[0])
     .catch(error => {
-      console.error({message: 'Error occurred while executing contacts.findById',
-                     arguments: arguments});
+      console.error({ message: 'Error occurred while executing contacts.findById',
+                     arguments: arguments });
       throw error});
 }
 
@@ -54,12 +54,12 @@ const destroy = function(contactId){
     `,
     [contactId])
     .catch(error => {
-      console.error({message: 'Error occurred while executing contacts.destroy',
-                     arguments: arguments});
-      throw error});
+      console.error({ message: 'Error occurred while executing contacts.destroy',
+                     arguments: arguments });
+      throw error });
 }
 
-const search = function(searchQuery){
+const search = function (searchQuery) {
   return db.query(`
     SELECT
       *
@@ -73,7 +73,7 @@ const search = function(searchQuery){
       console.error({message: 'Error occurred while executing contacts.search',
                      arguments: arguments});
       throw error});
-}
+};
 
 module.exports = {
   create,
@@ -81,4 +81,4 @@ module.exports = {
   findAll,
   destroy,
   search
-}
+};
