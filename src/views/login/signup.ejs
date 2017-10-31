@@ -12,17 +12,24 @@
 
         <h1>Sign up or login!</h1>
 
-        <div class="signup-container">
-          <form class="signup-form" action="/signup" method="POST">
+        <div class="signup-container auth-container">
+          <form class="auth-form" action="/signup" method="POST">
             <label>Username</label>
             <input type="text" class="username" name="username">
             <label>Password</label>
-            <input type="text" class="password" name="password">
+            <input type="password" class="password" name="password">
             <label>Role</label>
             <input type="text" class="username" name="role">
-            <button type="submit" class="create-user-btn">Signup</button>
+            <button type="submit" class="create-user-btn auth-btn">Signup</button>
           </form>
-
         </div>
 
-    <%- include ../partials/footer.ejs %>
+        <div class="login-container auth-container">
+          <form class="auth-form" action="/login" method="POST">
+            <label>Username</label>
+            <input type="text" class="username" name="username">
+            <label>Password</label>
+            <input type="password" class="password" name="password">
+            <button type="submit" class="verify-user-btn auth-btn">Login</button>
+          </form>
+        </div>
