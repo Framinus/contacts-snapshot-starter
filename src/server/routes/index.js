@@ -4,11 +4,20 @@ const contacts = require('../../models/contacts');
 const middlewares = require('../middlewares');
 const signupRoute = require('./signup');
 const loginRoute = require('./login');
+const hasPermissions = require('../../authorization.js');
 
-router.get('/', (request, response, next) => {
-  contacts.findAll()
-    .then((contacts) => { response.render('contacts/index', { contacts }); })
-    .catch(error => next(error));
+router.get('/', (request, response) => {
+  const role = request.session.role;
+  console.log('role: ', role);
+  if (hasPermissions(role, 'viewContacts')) {
+    contacts.findAll()
+      .then((contacts) => {
+        response.render('contacts/index', { contacts });
+      })
+      .catch(console.error);
+  } else {
+    response.redirect('/');
+  }
 });
 
 router.use('/contacts', contactsRoutes);

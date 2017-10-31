@@ -8,14 +8,16 @@ router.get('/', (request, response) => {
 });
 
 router.post('/', (request, response) => {
+  const sess = request.session;
   const { username, password, role } = request.body;
+  sess.username = request.body.username;
+  sess.role = request.body.role;
   const saltRounds = 10;
   bcrypt.hash(password, saltRounds)
     .then((hash) => {
       createUser(username, hash, role);
     })
     .then((userProfile) => {
-      console.log(userProfile);
       response.redirect('/');
     })
     .catch(console.error);

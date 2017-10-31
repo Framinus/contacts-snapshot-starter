@@ -11,7 +11,17 @@ app.set('views', __dirname + '/views');
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({ secret: 'fred', saveUninitialized: false, resave: false }));
+app.use(session(
+  {
+    key: 'user_sid',
+    secret: 'fred',
+    rolling: true,
+    saveUninitialized: true,
+    resave: false,
+    cookie: {
+      maxAge: 60000000,
+    },
+  }));
 app.use(middlewares.setDefaultResponseLocals);
 
 app.use('/', routes);
