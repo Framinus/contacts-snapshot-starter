@@ -3,21 +3,19 @@ const validateUser = require('../../models/db/users.js').validateUser;
 const bcrypt = require('bcrypt');
 
 router.post('/', (request, response) => {
-  const username = request.body.username;
-  const password = request.body.password;
+  const sess = request.session;
+  const { username, password } = request.body;
   validateUser(username)
     .then((userData) => {
-      bcrypt.compare(password, userData.password)
-        .then((success) => {
-          if (success) {
-            console.log(success);
-            response.redirect('/');
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          process.exit();
-        });
+      if (bcrypt.compare(password, userData.password)) {
+        sess.username = userData.username;
+        sess.role = userData.role;
+        response.redirect('/');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      process.exit();
     });
 });
 

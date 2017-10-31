@@ -1,10 +1,17 @@
 const contacts = require('../../models/contacts')
 
 const router = require('express').Router()
+const session = require('express-session');
 
 // renders page for new contact
 router.get('/new', (request, response) => {
-  response.render('contacts/new');
+  const sess = request.session;
+  if (sess.role === 'admin') {
+    response.render('contacts/new');
+  } else {
+    response.status(403);
+    response.render('common/forbidden');
+  }
 });
 
 // posts new contact to the server
@@ -37,15 +44,21 @@ router.get('/:contactId', (request, response, next) => {
 
 // deletes a single contact by id.
 router.delete('/:contactId', (request, response, next) => {
-  const contactId = request.params.contactId;
-  contacts.destroy(contactId)
-    .then((contact) => {
-      if (contact) {
-        return response.redirect('/');
-      }
-      next();
-    })
-    .catch(error => next(error));
+  const sess = request.session;
+  if (sess.role === 'admin') {
+    const contactId = request.params.contactId;
+    contacts.destroy(contactId)
+      .then((contact) => {
+        if (contact) {
+          return response.redirect('/');
+        }
+        next();
+      })
+      .catch(error => next(error));
+  } else {
+    response.status(403);
+    response.render('common/forbidden');
+  }
 });
 
 // renders the search page and results.
