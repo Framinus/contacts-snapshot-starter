@@ -102,3 +102,22 @@ nav .search-form input {
 .signup-container {
   border: 1px solid grey;
 }
+
+.login-container {
+  border: 1px solid grey;
+}
+
+.auth-container {
+  margin: 40px;
+  padding: 10px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.auth-btn {
+  margin: 10px;
+}

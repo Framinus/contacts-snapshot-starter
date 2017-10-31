@@ -1,17 +1,24 @@
 const router = require('express').Router();
-const loginRoutes = require('./signup');
-const middlewares = require('../middlewares');
+const createUser = require('../../models/db/users.js').createUser;
+const bcrypt = require('bcrypt');
 
-router.get('/signup', (request, response, next) => {
+router.get('/', (request, response) => {
   response.status(200);
   response.render('login/signup');
-  next();
 });
 
-router.use('/login', loginRoutes);
-
-router.use(middlewares.logErrors);
-router.use(middlewares.errorHandler);
-router.use(middlewares.notFoundHandler);
+router.post('/', (request, response) => {
+  const { username, password, role } = request.body;
+  const saltRounds = 10;
+  bcrypt.hash(password, saltRounds)
+    .then((hash) => {
+      createUser(username, hash, role);
+    })
+    .then((userProfile) => {
+      console.log(userProfile);
+      response.redirect('/');
+    })
+    .catch(console.error);
+});
 
 module.exports = router;

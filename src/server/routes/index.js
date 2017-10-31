@@ -2,6 +2,8 @@ const router = require('express').Router();
 const contactsRoutes = require('./contacts');
 const contacts = require('../../models/contacts');
 const middlewares = require('../middlewares');
+const signupRoute = require('./signup');
+const loginRoute = require('./login');
 
 router.get('/', (request, response, next) => {
   contacts.findAll()
@@ -9,11 +11,9 @@ router.get('/', (request, response, next) => {
     .catch(error => next(error));
 });
 
-router.post('/', (request, response, next) => {
-  const { username, password, role } = request.body;
-});
-
 router.use('/contacts', contactsRoutes);
+router.use('/signup', signupRoute);
+router.use('/login', loginRoute);
 router.use(middlewares.logErrors);
 router.use(middlewares.errorHandler);
 router.use(middlewares.notFoundHandler);
