@@ -19,6 +19,9 @@ textarea {
 nav {
   background-color: black;
   color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   padding: 0.3em 0.5em;
 }
 
@@ -36,7 +39,6 @@ nav .search-form input {
   border: none;
   padding: 0.3em 0.5em;
 }
-
 
 .page-column {
   width: 700px;
