@@ -8,16 +8,23 @@ const hasPermissions = require('../../authorization.js');
 
 router.get('/', (request, response) => {
   const role = request.session.role;
-  console.log('role: ', role);
-  if (hasPermissions(role, 'viewContacts')) {
-    contacts.findAll()
-      .then((contacts) => {
+  contacts.findAll()
+    .then((contacts) => {
+      if (role === "admin") {
         response.render('contacts/index', { contacts });
-      })
-      .catch(console.error);
-  } else {
-    response.redirect('/');
-  }
+      } else if (role === "regular") {
+        response.render('contacts/regular', { contacts });
+      } else {
+        response.redirect('/signup');
+      }
+    })
+    .catch(console.error);
+});
+
+router.post('/', (request, response) => {
+  request.session.destroy(() => {
+    response.redirect('/signup');
+  });
 });
 
 router.use('/contacts', contactsRoutes);

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const routes = require('./server/routes');
 const middlewares = require('./server/middlewares');
 const session = require('express-session');
+const methodOverride = require('method-override');
 
 const app = express();
 
@@ -11,6 +12,9 @@ app.set('views', __dirname + '/views');
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(methodOverride('_method'));
+
 app.use(session(
   {
     key: 'user_sid',
