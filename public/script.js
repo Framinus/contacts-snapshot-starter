@@ -2,12 +2,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
   console.log("DOM fully loaded and parsed");
 
   const confirmDelete = (event) => {
-    if (!confirm('Are you sure you want to delete this contact?')) {
-      event.preventDefault();
-    }
-  }
+    console.log('This is using the delete post route.');
+  };
 
-  ;[].forEach.call(document.querySelectorAll('.delete-contact'), function (link) {
+  [].forEach.call(document.querySelectorAll('.delete-contact'), function (link) {
     link.addEventListener("click", confirmDelete);
   });
 
@@ -15,7 +13,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     return !value || /^\s*$/.test(value);
   };
 
-  const newContactform = document.querySelector('.new-contact-form')
+  const newContactform = document.querySelector('.new-contact-form');
+
   if (newContactform) {
     newContactform.addEventListener('submit', function (event) {
       const errors = [];
