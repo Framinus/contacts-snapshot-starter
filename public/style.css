@@ -15,7 +15,6 @@ textarea {
   font-family: monospace;
 }
 
-
 nav {
   background-color: black;
   color: white;
@@ -130,6 +129,17 @@ nav .search-form input {
   justify-content: center;
 }
 
-.login-choice {
-  margin-right: 10px;
+.go-to-signup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.redirect-btn {
+  margin-left: 10px;
+}
+
+.errorMsg {
+  color: red;
+  text-align: center;
 }

@@ -20,6 +20,17 @@
             <input type="password" class="password" name="password">
             <button type="submit" class="verify-user-btn auth-btn">Login</button>
           </form>
+            <div class="errorMsg">
+              <% if (errorMsg) { %>
+                <p><%= errorMsg %></p>
+            <%  } %>
+            </div>
+        </div>
+        <div class="go-to-signup">
+          Not a member yet?
+          <div>
+          <a href="./signup"><button class="redirect-btn" type="button">Sign Up!</button></a>
+        </div>
         </div>
       </div>
     </div>
