@@ -5,7 +5,7 @@ const middlewares = require('./server/middlewares');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const pgSession = require('connect-pg-simple')(session);
-const flash = require('connect-flash');
+const flash = require('express-flash-2');
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use(session({
   secret: 'fred',
   rolling: true,
   saveUninitialized: false,
-  resave: false,
+  resave: true,
   cookie: {
     maxAge: 60000000,
   },
