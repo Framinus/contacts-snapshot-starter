@@ -123,3 +123,13 @@ nav .search-form input {
 .auth-btn {
   margin: 10px;
 }
+
+.go-to-login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.login-choice {
+  margin-right: 10px;
+}

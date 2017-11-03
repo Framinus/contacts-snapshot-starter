@@ -10,7 +10,7 @@
     <div class="page-column">
       <div class="page-column-content">
 
-        <h1>Sign up or login!</h1>
+        <h1>Sign up!</h1>
 
         <div class="signup-container auth-container">
           <form class="auth-form" action="/signup" method="POST">
@@ -24,12 +24,17 @@
           </form>
         </div>
 
-        <div class="login-container auth-container">
-          <form class="auth-form" action="/login" method="POST">
-            <label>Username</label>
-            <input type="text" class="username" name="username">
-            <label>Password</label>
-            <input type="password" class="password" name="password">
-            <button type="submit" class="verify-user-btn auth-btn">Login</button>
-          </form>
+        <div class="go-to-login">
+          <div class="login-choice">
+            Already a member? Login here:
+          </div>
+          <div>
+            <form method="POST" action="/login" class="login-route">
+              <button type="submit" class="go-login-btn">Login</button>
+            </form>
+          </div>
         </div>
+      </div>
+    </div>
+  </body>
+</html>

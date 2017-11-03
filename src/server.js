@@ -5,6 +5,7 @@ const middlewares = require('./server/middlewares');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const pgSession = require('connect-pg-simple')(session);
+const flash = require('connect-flash');
 
 const app = express();
 
@@ -29,6 +30,8 @@ app.use(session({
     maxAge: 60000000,
   },
 }));
+
+app.use(flash());
 
 app.use(middlewares.setDefaultResponseLocals);
 

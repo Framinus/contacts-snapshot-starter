@@ -4,7 +4,6 @@ const contacts = require('../../models/contacts');
 const middlewares = require('../middlewares');
 const signupRoute = require('./signup');
 const loginRoute = require('./login');
-const hasPermissions = require('../../authorization.js');
 
 router.get('/', (request, response) => {
   const role = request.session.role;
