@@ -12,7 +12,6 @@ router.post('/', (request, response) => {
   const { username, password } = request.body;
   validateUser(username)
     .then((userData) => {
-      console.log(userData);
       bcrypt.compare(password, userData.password)
         .then((result) => {
           if (result) {

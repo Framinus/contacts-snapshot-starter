@@ -1,11 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./server/routes');
 const middlewares = require('./server/middlewares');
 const session = require('express-session');
-const methodOverride = require('method-override');
 const pgSession = require('connect-pg-simple')(session);
-const flash = require('express-flash-2');
 
 const app = express();
 
@@ -15,14 +14,12 @@ app.set('views', __dirname + '/views');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(methodOverride('_method'));
-
 app.use(session({
   store: new pgSession({
-    conString: 'postgres://localhost:5432/contacts_development'
+    conString: process.env.DATABASE_URL,
   }),
   key: 'user_sid',
-  secret: 'fred',
+  secret: process.env.SESSION_SECRET,
   rolling: true,
   saveUninitialized: false,
   resave: true,
@@ -30,8 +27,6 @@ app.use(session({
     maxAge: 60000000,
   },
 }));
-
-app.use(flash());
 
 app.use(middlewares.setDefaultResponseLocals);
 
