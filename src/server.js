@@ -20,9 +20,8 @@ app.use(session({
   }),
   key: 'user_sid',
   secret: process.env.SESSION_SECRET,
-  rolling: true,
   saveUninitialized: false,
-  resave: true,
+  resave: false,
   cookie: {
     maxAge: 60000000,
   },
